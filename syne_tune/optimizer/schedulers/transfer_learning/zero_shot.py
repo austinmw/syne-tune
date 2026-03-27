@@ -34,7 +34,7 @@ class ZeroShotTransfer(TransferLearningMixin, SingleObjectiveScheduler):
 
     :param transfer_learning_evaluations: Dictionary from task name to
         offline evaluations.
-    :param mode: Whether to minimize ("min", default) or maximize ("max")
+    :param do_minimize: Whether to minimize (True, default) or maximize (False)
     :param sort_transfer_learning_evaluations: Use ``False`` if the
         hyperparameters for each task in ``transfer_learning_evaluations`` are
         already in the same order. If set to ``True``, hyperparameters are sorted.
@@ -62,7 +62,9 @@ class ZeroShotTransfer(TransferLearningMixin, SingleObjectiveScheduler):
             metric=metric,
             transfer_learning_evaluations=transfer_learning_evaluations,
             random_seed=random_seed,
+            do_minimize=do_minimize,
         )
+
         if use_surrogates and len(transfer_learning_evaluations) <= 1:
             use_surrogates = False
             sort_transfer_learning_evaluations = False
